@@ -69,7 +69,7 @@ class RechnungsGenerator(object):
         for _x in range(self.spalten):
             for _y in range(self.zeilen):
                 try:
-                    s = formatRechnung(self.items.pop())
+                    s = self.formatiereRechnung(self.items.pop())
                 except Exception, e:
                     print "Exception", e
                     traceback.print_exc(file=sys.stdout)
