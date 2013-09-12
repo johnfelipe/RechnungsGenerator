@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # vim: set fileencoding=latin-1 :
 
 import sys
@@ -16,7 +17,7 @@ input:
 
 
 class RechnungsGenerator(object):
-    spalten = 4
+    spalten = 3
     zeilen  = 19
     rand    = 50 ;# [points]
 
@@ -24,7 +25,7 @@ class RechnungsGenerator(object):
         print("Willkommen zum RechenaufgabenGenerator")
         self.nGesamt   = 76
         self.nElemente = 2
-        self.maxVal    = 10
+        self.maxVal    = 100
         #self.nGesamt   = int(input("Wie viele Rechnungen willst Du? "))
         #self.nElemente = int(input("Wie viele Elemente soll eine Rechnung enthalten? "))
         #self.maxVal = int(input("Was soll der größte Zahlenwert der Aufgaben sein? "))
@@ -57,10 +58,15 @@ class RechnungsGenerator(object):
             s.append(str(abs(e)))
         s.append("=")
         s.append("%d" % i[-1])
-        idx = random.randint(0,len(s)-2)
-        if idx == len(s) - 2:
+        if random.random() > 0.4: 
+            # 60% in der form "x + y = __"
             s[-1] = "__"
         else:
+            # 40%
+            # x + __ = z
+            # x __ y = z
+            # __ + y = z
+            idx = random.randint(0,len(s)-3)
             s[idx] = "__"
         return " ".join(s)
 
